@@ -47,7 +47,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "team_inspire",
       filename: "remoteEntry.js",
-      exposes: {},
+      exposes: {
+        './Recommendations': './src/Recommendations'
+      },
       shared: {
         ...deps,
         react: {
