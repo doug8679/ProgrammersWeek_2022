@@ -7,7 +7,7 @@ Source repository for original content: https://github.com/neuland/micro-fronten
 
 Refactored the original demo site to use React in all stages.
 
-## Stage Approach
+## Staged Approach
 
 This repository demonstrates a gradual, staged approach in refactoring a single, monolithic web application
 into a set of micro frontend components that can be incorporated into a host application.  The branches
@@ -17,4 +17,5 @@ available here demonstrate the various stages, below is a list of those brnaches
 |-----------|-----------|
 |dev|The always-current version of the site as the progressions have been applied.  `dev` will show the final product at the most recent stage of refactor.|
 |feature/monolithic-react-app|An initial application.  Created in haste, using a single component to hold the entire functionality of the site.|
-|feature/componetize-monolithic-app|A refactoring of the application into individual components representing the functionality required for various aspects of the sire.|
+|feature/componetize-monolithic-app|A refactoring of the application into individual components representing the functionality required for various aspects of the site.|
+|feature/introducing-team-inspire|Breaks the recommendations component out as a separate micro-frontend.  This will be the first use of Modue Federation to provide a remote component to the host applicaiton.|

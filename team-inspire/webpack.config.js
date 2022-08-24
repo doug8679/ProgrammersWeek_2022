@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: "http://localhost:8081/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 8080,
+    port: 8081,
     historyApiFallback: true,
   },
 
@@ -38,16 +38,17 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        use: "asset/resource",
+        use: "asset/resource"
       },
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "tractor-store-react",
-      remotes: {
-        'team_inspire': 'team_inspire@http://localhost:8081/remoteEntry.js'
+      name: "team_inspire",
+      filename: "remoteEntry.js",
+      exposes: {
+        './Recommendations': './src/Recommendations'
       },
       shared: {
         ...deps,
