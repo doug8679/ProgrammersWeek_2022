@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Basket from "./Basket";
+import BuyButton from "./BuyButton";
 
 import "./index.css";
 
@@ -81,7 +82,7 @@ const App = () => {
       <div id="image"><div><img src={variant.image} alt={variant.name} /></div></div>
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
-      <button id="buy" type="button" onClick={handleClickBuy}>buy for {variant.price}</button>
+      <BuyButton addToCart={handleClickBuy} price={variant.price}></BuyButton>
       <div id="reco"><h3>Related Products</h3>{reco.map(renderReco)}</div>
     </>
   )
