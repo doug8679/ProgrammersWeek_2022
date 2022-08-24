@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Basket from "./Basket";
+import BuyButton from "./BuyButton";
 
 import "./index.css";
+import Recommendations from "./Recommendations";
 
 // data
 const product = {
@@ -76,12 +79,12 @@ const App = () => {
   return (
     <>
       <h1 id="store">The Model Store</h1>
-      <div id="basket" className={myState.basket === 0 ? 'empty' : ''}>basket: {myState.basket} item(s)</div>
+      <Basket count={myState.basket}></Basket>
       <div id="image"><div><img src={variant.image} alt={variant.name} /></div></div>
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
-      <button id="buy" type="button" onClick={handleClickBuy}>buy for {variant.price}</button>
-      <div id="reco"><h3>Related Products</h3>{reco.map(renderReco)}</div>
+      <BuyButton addToCart={handleClickBuy} price={variant.price}></BuyButton>
+      <Recommendations reco={reco}></Recommendations>
     </>
   )
 };
