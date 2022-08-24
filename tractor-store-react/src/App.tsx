@@ -4,7 +4,8 @@ import Basket from "./Basket";
 import BuyButton from "./BuyButton";
 
 import "./index.css";
-import Recommendations from "./Recommendations";
+
+const Recommendations = React.lazy(() => import('team_inspire/Recommendations'));
 
 // data
 const product = {
@@ -84,7 +85,9 @@ const App = () => {
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
       <BuyButton addToCart={handleClickBuy} price={variant.price}></BuyButton>
-      <Recommendations reco={reco}></Recommendations>
+      <React.Suspense fallback="">
+        <Recommendations recos={reco}></Recommendations>
+      </React.Suspense>
     </>
   )
 };
