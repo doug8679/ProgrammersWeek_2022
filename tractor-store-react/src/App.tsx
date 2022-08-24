@@ -39,13 +39,18 @@ const recos = {
   t_fendt: ['3', '6', '4'],
   t_eicher: ['1', '8', '7'],
 };
+const state = {
+  variant: 't_porsche',
+  basket: 0
+};
 
 const App = () => {
 
-  const [myState, setAppState] = useState({
-    variant: 't_porsche',
-    basket: 0
-  });
+  const [myState, setAppState] = useState(state);
+
+  const handleClickBuy = React.useCallback(() => {
+    setAppState({...myState, basket: myState.basket+1});
+  }, []);
 
   const handleClickOption = React.useCallback((e) => {
     const sku = e.currentTarget.getAttribute('data-sku');
@@ -75,7 +80,7 @@ const App = () => {
       <div id="image"><div><img src={variant.image} alt={variant.name} /></div></div>
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
-      <button id="buy" type="button">buy for {variant.price}</button>
+      <button id="buy" type="button" onClick={handleClickBuy}>buy for {variant.price}</button>
       <div id="reco"><h3>Related Products</h3>{reco.map(renderReco)}</div>
     </>
   )
