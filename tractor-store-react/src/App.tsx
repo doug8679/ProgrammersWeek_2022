@@ -4,6 +4,7 @@ import Basket from "./Basket";
 import BuyButton from "./BuyButton";
 
 import "./index.css";
+import Recommendations from "./Recommendations";
 
 // data
 const product = {
@@ -83,7 +84,7 @@ const App = () => {
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
       <BuyButton addToCart={handleClickBuy} price={variant.price}></BuyButton>
-      <div id="reco"><h3>Related Products</h3>{reco.map(renderReco)}</div>
+      <Recommendations reco={reco}></Recommendations>
     </>
   )
 };
