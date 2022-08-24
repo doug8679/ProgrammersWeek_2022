@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
@@ -11,24 +11,24 @@ const product = {
       sku: 't_porsche',
       color: 'red',
       name: 'Porsche-Diesel Master 419',
-      image: './images/tractor-red.jpg',
-      thumb: './images/tractor-red-thumb.jpg',
+      image: 'tractor-red.jpg',
+      thumb: 'tractor-red-thumb.jpg',
       price: '66,00 €',
     },
     {
       sku: 't_fendt',
       color: 'green',
       name: 'Fendt F20 Dieselroß',
-      image: './images/tractor-green.jpg',
-      thumb: './images/tractor-green-thumb.jpg',
+      image: 'tractor-green.jpg',
+      thumb: 'tractor-green-thumb.jpg',
       price: '54,00 €',
     },
     {
       sku: 't_eicher',
       color: 'blue',
       name: 'Eicher Diesel 215/16',
-      image: './images/tractor-blue.jpg',
-      thumb: './images/tractor-blue-thumb.jpg',
+      image: 'tractor-blue.jpg',
+      thumb: 'tractor-blue-thumb.jpg',
       price: '58,00 €',
     },
   ],
@@ -40,33 +40,38 @@ const recos = {
   t_eicher: ['1', '8', '7'],
 };
 
-const state = {
-  variant: 't_porsche',
-  basket: 0,
-};
-
 const App = () => {
+
+  const [myState, setAppState] = useState({
+    variant: 't_porsche',
+    basket: 0
+  });
+
+  const handleClickOption = React.useCallback((e) => {
+    const sku = e.currentTarget.getAttribute('data-sku');
+    setAppState({...myState, variant: sku});
+  }, []);
   
   const renderOption = (variant) => {
-    const active = state.variant === variant.sku ? 'active' : '';
+    const active = myState.variant === variant.sku ? 'active' : '';
     return (
-      <button className={active} type="button" data-sku={variant.sku}>
+      <button key={variant.sku} className={active} type="button" data-sku={variant.sku} onClick={handleClickOption}>
         <img src={variant.thumb} alt={variant.name} />
       </button>
     );
   };
 
   const renderReco = (id) => {
-    return <img src={`./images/reco_${id}`} alt={`Reco ${id}`} />;
+    return <img key={id} src={`reco_${id}.jpg`} alt={`Reco ${id}`} />;
   };
 
-  const variant = product.variants.find((v) => state.variant === v.sku);
+  const variant = product.variants.find((v) => myState.variant === v.sku);
   const reco = recos[variant.sku];
   
   return (
     <>
       <h1 id="store">The Model Store</h1>
-      <div id="basket" className={state.basket === 0 ? 'empty' : ''}>basket: {state.basket} item(s)</div>
+      <div id="basket" className={myState.basket === 0 ? 'empty' : ''}>basket: {myState.basket} item(s)</div>
       <div id="image"><div><img src={variant.image} alt={variant.name} /></div></div>
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
