@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Basket from "./Basket";
 
 import "./index.css";
 
@@ -76,7 +77,7 @@ const App = () => {
   return (
     <>
       <h1 id="store">The Model Store</h1>
-      <div id="basket" className={myState.basket === 0 ? 'empty' : ''}>basket: {myState.basket} item(s)</div>
+      <Basket count={myState.basket}></Basket>
       <div id="image"><div><img src={variant.image} alt={variant.name} /></div></div>
       <h2 id="name">{product.name} <small>{variant.name}</small></h2>
       <div id="options">{product.variants.map(renderOption)}</div>
