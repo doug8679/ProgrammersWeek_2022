@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
 module.exports = {
@@ -43,6 +44,23 @@ module.exports = {
   },
 
   plugins: [
+    new ModuleFederationPlugin({
+      name: "tractor-store-react",
+      remotes: {
+        'team_inspire': 'team_inspire@http://localhost:8081/remoteEntry.js'
+      },
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
+    }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
     }),
