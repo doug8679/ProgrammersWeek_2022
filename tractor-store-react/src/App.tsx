@@ -59,6 +59,9 @@ const App = () => {
   const renderReco = (id) => {
     return <img src={`./images/reco_${id}`} alt={`Reco ${id}`} />;
   };
+
+  const variant = product.variants.find((v) => state.variant === v.sku);
+  const reco = recos[variant.sku];
   
   return (
     <>
