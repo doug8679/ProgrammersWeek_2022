@@ -19,3 +19,4 @@ available here demonstrate the various stages, below is a list of those brnaches
 |feature/monolithic-react-app|An initial application.  Created in haste, using a single component to hold the entire functionality of the site.|
 |feature/componetize-monolithic-app|A refactoring of the application into individual components representing the functionality required for various aspects of the site.|
 |feature/introducing-team-inspire|Breaks the recommendations component out as a separate micro-frontend.  This will be the first use of Modue Federation to provide a remote component to the host applicaiton.|
+|feature/introducing-team-checkout|Breaks the basket and buy button components out as separate micro-frontend remote objects.  A new remote module using Module Federation.|
