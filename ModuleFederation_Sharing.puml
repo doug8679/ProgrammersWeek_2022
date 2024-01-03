@@ -1,0 +1,91 @@
+@startuml
+
+skinparam defaultFontColor #C0D9E9
+skinparam PageMargin 25
+skinparam backgroundColor #2E3A41
+skinparam ArrowColor #C0D9E9
+skinparam ArrowFontColor #C0D9E9
+skinparam ArrowThickness 1
+skinparam Linetype ortho
+
+skinparam node {
+    backgroundColor #2E3A41
+    borderColor #555555
+    borderThickness 2
+    fontSize 16
+    fontStyle bold
+    fontColor #C0D9E9
+}
+
+skinparam component {
+    backgroundColor #2E3A41
+    borderColor #576B77
+    borderThickness 2
+    fontSize 16
+    fontStyle bold
+    fontColor #C0D9E9
+}
+
+skinparam database {
+    backgroundColor #2E3A41
+    borderColor #576B77
+    borderThickness 2
+    fontSize 16
+    fontStyle bold
+    fontColor #C0D9E9
+}
+skinparam rectangle {
+    backgroundColor #2E3A41
+    borderColor #576B77
+    borderThickness 2
+    fontSize 16
+    fontStyle bold
+    fontColor #C0D9E9
+}
+
+skinparam package {
+    backgroundColor #2E3A41
+    borderColor #576B77
+    borderThickness 2
+    fontSize 16
+    fontStyle bold
+    fontColor #C0D9E9
+}
+
+skinparam note {
+    backgroundColor #000000
+    fontColor #C0D9E9
+    fontSize 14
+}
+
+skinparam Nodesep 100
+skinparam Ranksep 105
+
+together {
+component React
+component React.DOM
+component React.Router
+}
+
+node ModuleFederation as mf {
+    database bundler
+}
+
+note right of mf
+Shared node modules are passed through
+the bundler and output as a shared
+modules available in the runtime.
+end note
+
+component "234.js" as shareReact
+component "346.js" as shareReactDOM
+component "945.js" as shareReactRouter
+
+bundler --> shareReact
+bundler --> shareReactDOM
+bundler --> shareReactRouter
+
+React --> bundler
+bundler <-- React.DOM
+React.Router --> bundler
+@enduml
